@@ -1,5 +1,7 @@
 package edu.mobile.voting.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import edu.mobile.voting.model.Person;
@@ -19,5 +21,10 @@ public class PersonServiceImpl implements PersonService{
 	@Override
 	public Person savePerson(Person person) {
 		return personRepository.save(person);
+	}
+
+	@Override
+	public List<Person> getAllPersons() {
+		return personRepository.findAll();
 	}
 }

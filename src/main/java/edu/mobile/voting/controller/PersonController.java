@@ -1,7 +1,10 @@
 package edu.mobile.voting.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +14,7 @@ import edu.mobile.voting.model.Person;
 import edu.mobile.voting.service.PersonService;
 
 @RestController
-@RequestMapping("/save_person")
+@RequestMapping("/api")
 public class PersonController {
 
 	private PersonService personService;
@@ -21,8 +24,13 @@ public class PersonController {
 		 this.personService = personService; 
 	 }
 	
-	@PostMapping()
+	@PostMapping("/setPerson")
 	public ResponseEntity<Person> savePerson(@RequestBody Person person) {
 		return new ResponseEntity<Person>(personService.savePerson(person), HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/getAll")
+	public List<Person> getAllPersons() {
+		return personService.getAllPersons();
 	}
 }
