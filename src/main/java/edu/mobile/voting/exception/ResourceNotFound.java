@@ -9,13 +9,13 @@ public class ResourceNotFound extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	private String resourceName;
 	private String fieldName;
-	private String fieldValue;
+	private int fieldValue;
 	
-	public ResourceNotFound(String resourceName, String fieldName, String fieldValue) {
-		super(String.format("%s not found with %s : %s", resourceName, fieldName, fieldValue));
+	public ResourceNotFound(String resourceName, String fieldName, int id) {
+		super(String.format("%s not found with %s : %s", resourceName, fieldName, id));
 		this.resourceName = resourceName;
 		this.fieldName = fieldName;
-		this.fieldValue = fieldValue;
+		this.fieldValue = id;
 	}
 
 	public String getResourceName() {
@@ -26,7 +26,7 @@ public class ResourceNotFound extends RuntimeException {
 		return fieldName;
 	}
 
-	public String getFieldValue() {
+	public int getFieldValue() {
 		return fieldValue;
 	}
 	
