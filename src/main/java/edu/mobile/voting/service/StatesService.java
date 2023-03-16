@@ -8,4 +8,5 @@ public interface StatesService {
 	States saveStates(States states);
 	List<States> getAllStates(States states);
 	States getStatesById(int id);
+	int getStateIdByName(String stateName);
 }
