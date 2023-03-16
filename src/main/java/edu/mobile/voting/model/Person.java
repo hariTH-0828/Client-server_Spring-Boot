@@ -1,6 +1,11 @@
 package edu.mobile.voting.model;
 
 import jakarta.persistence.Entity;
+
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -28,9 +33,16 @@ public class Person {
 	@Column(name = "aadhaar_number", nullable = false)
     private String aadhaarNumber;
 	
+	@Column(name = "birth_date", nullable = false)
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Date birthDate;
 	
-	
-    // Getter and Setter
+	@Column(name = "states_id", nullable = false)
+	private int statesId;
+   
+
+	// Getter and Setter
     public String getName() {
 		return name;
 	}
@@ -77,6 +89,24 @@ public class Person {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	 public Date getBirthDate() {
+		return birthDate;
+	 }
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	
+
+	public int getStatesId() {
+		return statesId;
+	}
+
+	public void setStatesId(int statesId) {
+		this.statesId = statesId;
 	}
 
 	public int getId() {

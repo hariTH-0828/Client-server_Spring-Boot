@@ -33,5 +33,4 @@ public class StatesServiceImpl implements StatesService{
 	public States getStatesById(int id) {
 		return statesRepository.findById(id).orElseThrow(() -> new ResourceNotFound("states", "id", id));
 	}
-
 }

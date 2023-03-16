@@ -39,4 +39,5 @@ public class StatesController {
 	public ResponseEntity<States> getStatesById(@PathVariable("id") int id) {
 		return new ResponseEntity<States>(statesService.getStatesById(id), HttpStatus.OK);
 	}
+
 }
