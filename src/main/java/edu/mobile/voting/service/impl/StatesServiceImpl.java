@@ -20,11 +20,6 @@ public class StatesServiceImpl implements StatesService{
 	}
 
 	@Override
-	public States saveStates(States states) {
-		return statesRepository.save(states);
-	}
-
-	@Override
 	public List<States> getAllStates(States states) {
 		return statesRepository.findAll();
 	}
@@ -34,8 +29,9 @@ public class StatesServiceImpl implements StatesService{
 		return statesRepository.findById(id).orElseThrow(() -> new ResourceNotFound("states", "id", id));
 	}
 
-	@Override
-	public int getStateIdByName(String stateName) {
-		return statesRepository.findByState(stateName).getId();
+	@Override 
+	public int getStateIdByName(String stateName) { 
+		return statesRepository.findByState(stateName).getId(); 
 	}
+	 
 }
