@@ -61,4 +61,11 @@ public class PersonController {
 		personRepository.deleteById(id);
 		return new ResponseEntity<String>("Person Deleted Successfully...", HttpStatus.OK);
 	}
+	
+	@GetMapping("aadhaar/{aadhaar_number}")
+	public boolean isAadhaar(@PathVariable("aadhaar_number") String number) {
+		if(!personRepository.findByaadhaarNumber(number).getAadhaarNumber().isEmpty()) {
+			return true;
+		}else return false;
+	}
 }

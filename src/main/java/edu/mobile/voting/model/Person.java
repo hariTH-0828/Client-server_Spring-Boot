@@ -2,6 +2,8 @@ package edu.mobile.voting.model;
 
 import jakarta.persistence.Entity;
 
+import java.sql.Date;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,14 +16,17 @@ public class Person {
     @Column(name = "name", nullable = false)
     private String name;
     
-    @Column(name = "father_name", nullable = false)
-    private String fatherName;
+    @Column(name = "sex", nullable = false)
+    private String gender;
+    
+    @Column(name = "date_of_bith", nullable = false)
+    private Date dateOfBirth;
     
     @Column(name = "age", nullable = false)
     private int age;
     
-    @Column(name = "sex", nullable = false)
-    private String gender;
+    @Column(name = "father_name", nullable = false)
+    private String fatherName;
     
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
@@ -31,6 +36,9 @@ public class Person {
 	
 	@Column(name = "state_id", nullable = false)
 	private int stateId;
+	
+	@Column(name = "district_id", nullable = false)
+	private int districtId;
    
 
 	// Getter and Setter
@@ -88,6 +96,22 @@ public class Person {
 
 	public void setStateId(int stateId) {
 		this.stateId = stateId;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public int getDistrictId() {
+		return districtId;
+	}
+
+	public void setDistrictId(int districtId) {
+		this.districtId = districtId;
 	}
 
 	public int getId() {
