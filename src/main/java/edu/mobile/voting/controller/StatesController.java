@@ -2,6 +2,7 @@ package edu.mobile.voting.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,34 +10,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.mobile.voting.exception.ResourceNotFound;
 import edu.mobile.voting.model.States;
-import edu.mobile.voting.service.StatesService;
+import edu.mobile.voting.repository.StatesRepository;
 
 @RestController
 @RequestMapping("/api/states")
 public class StatesController {
 
-	private StatesService statesService;
-
-	public StatesController(StatesService statesService) {
-		super();
-		this.statesService = statesService;
-	}
+	@Autowired
+	private StatesRepository statesRepository;
 	
 	@GetMapping("/getAll")
 	public List<States> getAllStates(States states){
-		return statesService.getAllStates(states);
+		return statesRepository.findAll();
 	}
 	
 	@GetMapping("{id}")
 	public ResponseEntity<States> getStatesById(@PathVariable("id") int id) {
-		return new ResponseEntity<States>(statesService.getStatesById(id), HttpStatus.OK);
+		return new ResponseEntity<States>(statesRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFound("State", "id", id)), HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/search/{stateName}") 
 	public int getStateIdByName(@PathVariable("stateName") String stateName) { 
-		return statesService.getStateIdByName(stateName); 
+		return statesRepository.findByState(stateName).getId(); 
 	}
 
 }
