@@ -39,6 +39,12 @@ public class Person {
 	
 	@Column(name = "district_id", nullable = false)
 	private int districtId;
+	
+	@Column(name = "assembly_id", nullable = false)
+	private int assemblyId;
+	
+	@Column(name = "voterNumber", nullable = false)
+	private String epicNumber;
    
 
 	// Getter and Setter
@@ -112,6 +118,22 @@ public class Person {
 
 	public void setDistrictId(int districtId) {
 		this.districtId = districtId;
+	}
+	
+	public int getAssemblyId() {
+		return assemblyId;
+	}
+
+	public void setAssemblyId(int assemblyId) {
+		this.assemblyId = assemblyId;
+	}
+
+	public String getEpicNumber() {
+		return epicNumber;
+	}
+
+	public void setEpicNumber(String epicNumber) {
+		this.epicNumber = epicNumber;
 	}
 
 	public int getId() {

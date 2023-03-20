@@ -50,6 +50,8 @@ public class PersonController {
 		existPerson.setPhoneNumber(person.getPhoneNumber());
 		existPerson.setAadhaarNumber(person.getAadhaarNumber());
 		existPerson.setStateId(person.getStateId());
+		existPerson.setAssemblyId(person.getAssemblyId());
+		existPerson.setEpicNumber(person.getEpicNumber());
 		
 		personRepository.save(existPerson);
 		return new ResponseEntity<Person>(existPerson, HttpStatus.OK);
@@ -62,9 +64,9 @@ public class PersonController {
 		return new ResponseEntity<String>("Person Deleted Successfully...", HttpStatus.OK);
 	}
 	
-	@GetMapping("aadhaar/{aadhaar_number}")
-	public boolean isAadhaar(@PathVariable("aadhaar_number") String number) {
-		if(!personRepository.findByaadhaarNumber(number).getAadhaarNumber().isEmpty()) {
+	@GetMapping("phone/{phone_number}")
+	public boolean isPhoneNumber(@PathVariable("phone_number") String number) {
+		if(!personRepository.findByPhoneNumber(number).getPhoneNumber().isEmpty()) {
 			return true;
 		}else return false;
 	}
