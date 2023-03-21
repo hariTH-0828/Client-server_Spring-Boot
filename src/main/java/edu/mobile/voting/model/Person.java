@@ -28,10 +28,10 @@ public class Person {
     @Column(name = "father_name", nullable = false)
     private String fatherName;
     
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 
-	@Column(name = "aadhaar_number", nullable = false)
+	@Column(name = "aadhaar_number", nullable = false, unique = true)
     private String aadhaarNumber;
 	
 	@Column(name = "state_id", nullable = false)
@@ -43,7 +43,7 @@ public class Person {
 	@Column(name = "assembly_id", nullable = false)
 	private int assemblyId;
 	
-	@Column(name = "voterNumber", nullable = false)
+	@Column(name = "voterNumber", nullable = false, unique = true)
 	private String epicNumber;
    
 
