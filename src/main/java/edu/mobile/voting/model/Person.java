@@ -12,6 +12,10 @@ public class Person {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "datafile_id", referencedColumnName = "id")
+	private DataFileInfo profilePhoto;
     
     @Column(name = "name", nullable = false)
     private String name;
@@ -139,4 +143,13 @@ public class Person {
 	public int getId() {
 		return id;
 	}
+
+	public DataFileInfo getProfilePhoto() {
+		return profilePhoto;
+	}
+
+	public void setProfilePhoto(DataFileInfo profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+
 }
