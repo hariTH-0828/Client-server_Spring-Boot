@@ -14,7 +14,7 @@ public class Person {
     private int id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "datafile_id", referencedColumnName = "id")
+	@JoinColumn(name = "image_id", referencedColumnName = "id")
 	private DataFileInfo profilePhoto;
     
     @Column(name = "name", nullable = false)

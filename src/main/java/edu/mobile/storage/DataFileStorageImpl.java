@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class DataFileStorageImpl implements DataFileStorage {
 	
 	@Autowired
 	private DataFileRepo dataFileRepo;
+	
+	File file;
 	
 	private static final String path = "D:\\Documents\\Project\\user_data\\";
 	
@@ -42,9 +45,15 @@ public class DataFileStorageImpl implements DataFileStorage {
 	}
 
 	@Override
-	public boolean deleteFile(long fileId) {
-		
-		return false;
+	public String deleteFile(long fileId) {
+		File file = new File(path, String.valueOf(fileId));
+		file.delete();
+		dataFileRepo.deleteById(fileId);
+		return "File delete successfully";
 	}
 
+	@Override
+	public List<DataFileInfo> getAll() {
+		return dataFileRepo.findAll();
+	}
 }
