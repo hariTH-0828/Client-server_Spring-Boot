@@ -49,7 +49,7 @@ public class Person {
 	
 	@Column(name = "voterNumber", nullable = false, unique = true)
 	private String epicNumber;
-   
+	
 
 	// Getter and Setter
     public String getName() {

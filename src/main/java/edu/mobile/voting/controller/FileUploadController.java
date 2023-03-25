@@ -2,8 +2,6 @@ package edu.mobile.voting.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,28 +36,24 @@ public class FileUploadController {
 	@Autowired
 	private DataFileStorageImpl fileStorage;
 	
-	private final static String UPLOAD_FOLDER = "D:\\";
+	//private final static String UPLOAD_FOLDER = "D:\\";
 	
     @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<DataFileInfo> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
     	DataFileInfo dataFileInfo = new DataFileInfo();
+    	
     	dataFileInfo.setFileName(file.getOriginalFilename());
     	dataFileInfo.setFileSize(file.getSize());	
     	
-    	if(!file.isEmpty() ) {
-    		byte[] bytes = file.getBytes();
-    		java.nio.file.Path locations = (java.nio.file.Path) Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
-    		Files.write(locations, bytes);
-    		return "Image upload succeed";
-    	} else {
-    		return "Image not contained";
-    	}
 		/*
-		 * long id = fileStorage.writeFile(file.getInputStream(), dataFileInfo); return
-		 * new ResponseEntity<String>(dataFileRepo.findById(id).get(),
-		 * HttpStatus.CREATED);
+		 * if(!file.isEmpty() ) { byte[] bytes = file.getBytes(); Path locations =
+		 * (Path) Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
+		 * Files.write(locations, bytes); return "Image upload succeed"; } else { return
+		 * "Image not contained"; }
 		 */
-    	
+		
+		  long id = fileStorage.writeFile(file.getInputStream(), dataFileInfo); 
+		  return new ResponseEntity<DataFileInfo>(dataFileRepo.findById(id).get(), HttpStatus.CREATED);
     }
     	
     @GetMapping("/uploadFile/{id}")
