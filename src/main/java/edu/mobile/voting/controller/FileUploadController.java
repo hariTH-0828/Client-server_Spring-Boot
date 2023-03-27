@@ -36,8 +36,6 @@ public class FileUploadController {
 	@Autowired
 	private DataFileStorageImpl fileStorage;
 	
-	//private final static String UPLOAD_FOLDER = "D:\\";
-	
     @PostMapping("/uploadFile")
     public ResponseEntity<DataFileInfo> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
     	DataFileInfo dataFileInfo = new DataFileInfo();
@@ -45,15 +43,8 @@ public class FileUploadController {
     	dataFileInfo.setFileName(file.getOriginalFilename());
     	dataFileInfo.setFileSize(file.getSize());	
     	
-		/*
-		 * if(!file.isEmpty() ) { byte[] bytes = file.getBytes(); Path locations =
-		 * (Path) Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
-		 * Files.write(locations, bytes); return "Image upload succeed"; } else { return
-		 * "Image not contained"; }
-		 */
-		
-		  long id = fileStorage.writeFile(file.getInputStream(), dataFileInfo); 
-		  return new ResponseEntity<DataFileInfo>(dataFileRepo.findById(id).get(), HttpStatus.CREATED);
+    	long id = fileStorage.writeFile(file.getInputStream(), dataFileInfo); 
+	  	return new ResponseEntity<DataFileInfo>(dataFileRepo.findById(id).get(), HttpStatus.CREATED);
     }
     	
     @GetMapping("/uploadFile/{id}")
@@ -79,7 +70,7 @@ public class FileUploadController {
     }
     
     @DeleteMapping("/deleteFile/{id}")
-    public String deleteFileInfor(@PathVariable("id") long id) {
+    public String deleteFileInfo(@PathVariable("id") long id) {
     	String statusMesssage = fileStorage.deleteFile(id);
     	return statusMesssage;
     }
@@ -87,5 +78,11 @@ public class FileUploadController {
     @GetMapping("/getAllDataInfo")
     public List<DataFileInfo> getAllDataInfor(){
     	return fileStorage.getAll();
+    }
+    
+    @GetMapping("/deleteAll")
+    public String deleteAllFileInfo() {
+    	dataFileRepo.deleteAll();
+    	return "All files are delete successfully";
     }
 }

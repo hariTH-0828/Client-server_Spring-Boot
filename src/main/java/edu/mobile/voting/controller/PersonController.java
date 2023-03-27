@@ -1,7 +1,6 @@
 package edu.mobile.voting.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,13 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.mobile.voting.exception.ResourceNotFound;
-import edu.mobile.voting.model.DataFileInfo;
 import edu.mobile.voting.model.Person;
-import edu.mobile.voting.repository.DataFileRepo;
 import edu.mobile.voting.repository.PersonRepository;
 
 @RestController
@@ -29,8 +25,9 @@ public class PersonController {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	@Autowired
-	private DataFileRepo fileRepo;
+	/*
+	 * @Autowired private DataFileRepo fileRepo;
+	 */
 
 	@PostMapping("/setPerson")
 	public ResponseEntity<Person> savePerson(@RequestBody Person person) {
@@ -47,23 +44,20 @@ public class PersonController {
 		return new ResponseEntity<Person>(personRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Person", "id", id)), HttpStatus.OK);
 	}
 	
-	@PostMapping("{id}/updateProfilePhoto")
-	public ResponseEntity<Boolean> updatePhoto(@PathVariable("id") int id, @RequestParam("photoFileId") long photoId) {
-		Optional<DataFileInfo> profilePhoto = fileRepo.findById(photoId);
-		if(profilePhoto.isEmpty()) {
-			// TODO: need to return validation error file not exists
-		}
-		Optional<Person> personInfo = personRepository.findById(id);
-		if(personInfo.isEmpty()) {
-			// TODO: need to throw a validation exception with validation reason
-		}
-		Person person = personInfo.get();
-		person.setProfilePhoto(profilePhoto.get());
-		personRepository.save(person);
-		
-		return ResponseEntity.ok(true);
-		
-	}
+	/*
+	 * @PostMapping("/{id}/updateProfilePhoto") public ResponseEntity<Boolean>
+	 * updatePhoto(@PathVariable("id") int id, @RequestParam("photoFileId") long
+	 * photoId) { Optional<DataFileInfo> profilePhoto = fileRepo.findById(photoId);
+	 * if(profilePhoto.isEmpty()) { // TODO: need to return validation error file
+	 * not exists } Optional<Person> personInfo = personRepository.findById(id);
+	 * if(personInfo.isEmpty()) { // TODO: need to throw a validation exception with
+	 * validation reason } Person person = personInfo.get();
+	 * person.setProfilePhoto(profilePhoto.get()); personRepository.save(person);
+	 * 
+	 * return ResponseEntity.ok(true);
+	 * 
+	 * }
+	 */
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Person> updatePersonById(@PathVariable("id") int id, @RequestBody Person person){

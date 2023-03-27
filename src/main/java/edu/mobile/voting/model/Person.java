@@ -13,9 +13,14 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "image_id", referencedColumnName = "id")
-	private DataFileInfo profilePhoto;
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "image_id", referencedColumnName = "id") private
+	 * DataFileInfo profilePhoto;
+	 */
+	@Column(name = "image_id", nullable = false)
+	private long imageId;
     
     @Column(name = "name", nullable = false)
     private String name;
@@ -144,12 +149,12 @@ public class Person {
 		return id;
 	}
 
-	public DataFileInfo getProfilePhoto() {
-		return profilePhoto;
+	public long getImageId() {
+		return imageId;
 	}
 
-	public void setProfilePhoto(DataFileInfo profilePhoto) {
-		this.profilePhoto = profilePhoto;
+	public void setImageId(long imageId) {
+		this.imageId = imageId;
 	}
 
 }
