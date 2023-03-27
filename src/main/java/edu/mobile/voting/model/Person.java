@@ -10,54 +10,48 @@ import jakarta.persistence.*;
 public class Person {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	
-	/*
-	 * @OneToOne(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "image_id", referencedColumnName = "id") private
-	 * DataFileInfo profilePhoto;
-	 */
-	@Column(name = "image_id", nullable = false)
-	private long imageId;
-    
-    @Column(name = "name", nullable = false)
-    private String name;
-    
-    @Column(name = "sex", nullable = false)
-    private String gender;
-    
-    @Column(name = "date_of_bith", nullable = false)
-    private Date dateOfBirth;
-    
-    @Column(name = "age", nullable = false)
-    private int age;
-    
-    @Column(name = "father_name", nullable = false)
-    private String fatherName;
-    
-    @Column(name = "phone_number", nullable = false, unique = true)
-    private String phoneNumber;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_image_id", referencedColumnName = "id")
+	private DataFileInfo imageId;
+
+	@Column(name = "name", nullable = false)
+	private String name;
+
+	@Column(name = "sex", nullable = false)
+	private String gender;
+
+	@Column(name = "date_of_bith", nullable = false)
+	private Date dateOfBirth;
+
+	@Column(name = "age", nullable = false)
+	private int age;
+
+	@Column(name = "father_name", nullable = false)
+	private String fatherName;
+
+	@Column(name = "phone_number", nullable = false, unique = true)
+	private String phoneNumber;
 
 	@Column(name = "aadhaar_number", nullable = false, unique = true)
-    private String aadhaarNumber;
-	
+	private String aadhaarNumber;
+
 	@Column(name = "state_id", nullable = false)
 	private int stateId;
-	
+
 	@Column(name = "district_id", nullable = false)
 	private int districtId;
-	
+
 	@Column(name = "assembly_id", nullable = false)
 	private int assemblyId;
-	
+
 	@Column(name = "voterNumber", nullable = false, unique = true)
 	private String epicNumber;
-	
 
 	// Getter and Setter
-    public String getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -80,9 +74,9 @@ public class Person {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	 public int getAge() {
-			return age;
+
+	public int getAge() {
+		return age;
 	}
 
 	public void setAge(int age) {
@@ -120,7 +114,7 @@ public class Person {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	public int getDistrictId() {
 		return districtId;
 	}
@@ -128,7 +122,7 @@ public class Person {
 	public void setDistrictId(int districtId) {
 		this.districtId = districtId;
 	}
-	
+
 	public int getAssemblyId() {
 		return assemblyId;
 	}
@@ -149,11 +143,11 @@ public class Person {
 		return id;
 	}
 
-	public long getImageId() {
+	public DataFileInfo getImageId() {
 		return imageId;
 	}
 
-	public void setImageId(long imageId) {
+	public void setImageId(DataFileInfo imageId) {
 		this.imageId = imageId;
 	}
 
