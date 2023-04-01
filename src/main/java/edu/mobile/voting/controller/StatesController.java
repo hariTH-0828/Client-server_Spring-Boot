@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.mobile.voting.exception.ResourceNotFound;
 import edu.mobile.voting.model.States;
 import edu.mobile.voting.repository.StatesRepository;
 
@@ -27,9 +26,8 @@ public class StatesController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<States> getStatesById(@PathVariable("id") int id) {
-		return new ResponseEntity<States>(statesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFound("State", "id", id)), HttpStatus.OK);
+	public ResponseEntity<String> getStatesById(@PathVariable("id") int id) {
+		return new ResponseEntity<String>(statesRepository.findById(id).get().getState(), HttpStatus.OK);
 	}
 	
 	

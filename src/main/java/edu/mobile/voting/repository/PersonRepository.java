@@ -6,4 +6,6 @@ import edu.mobile.voting.model.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 	Person findByPhoneNumber(String phoneNumber);
+	Person findByAadhaarNumber(String aadhaarNumber);
+	Person findByEpicNumber(String epicNumber);
 }

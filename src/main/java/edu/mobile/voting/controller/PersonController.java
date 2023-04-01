@@ -91,5 +91,9 @@ public class PersonController {
 			return true;
 		}else return false;
 	}
-
+	
+	@GetMapping("aadhaar/{aadhaar_number}")
+	public ResponseEntity<Person> getPersonByAadhaar(@PathVariable("aadhaar_number") String aadhaarNumber) {
+		return new ResponseEntity<Person>(personRepository.findByAadhaarNumber(aadhaarNumber), HttpStatus.OK);
+	}
 }
