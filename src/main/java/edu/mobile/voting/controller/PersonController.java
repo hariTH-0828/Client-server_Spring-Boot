@@ -96,4 +96,9 @@ public class PersonController {
 	public ResponseEntity<Person> getPersonByAadhaar(@PathVariable("aadhaar_number") String aadhaarNumber) {
 		return new ResponseEntity<Person>(personRepository.findByAadhaarNumber(aadhaarNumber), HttpStatus.OK);
 	}
+	
+	@GetMapping("epic/{epic_number}")
+	public ResponseEntity<Person> getPersonByEpic(@PathVariable("epic_number") String epicNumber) {
+		return new ResponseEntity<Person>(personRepository.findByEpicNumber(epicNumber), HttpStatus.OK);
+	}
 }

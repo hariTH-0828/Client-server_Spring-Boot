@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.mobile.voting.exception.ResourceNotFound;
 import edu.mobile.voting.model.District;
 import edu.mobile.voting.repository.DistrictRepository;
 
@@ -28,8 +29,8 @@ public class DistrictController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<String> getDistrictById(@PathVariable("id") int id) {
-		return new ResponseEntity<String>(districtRepository.findById(id).get().getDistrict(), HttpStatus.OK);
+	public ResponseEntity<District> getDistrictById(@PathVariable("id") int id) {
+		return new ResponseEntity<District>(districtRepository.findById(id).orElseThrow(() -> new ResourceNotFound("District", "id", id)), HttpStatus.OK);
 	}
 	
 	@GetMapping("state/{id}")
