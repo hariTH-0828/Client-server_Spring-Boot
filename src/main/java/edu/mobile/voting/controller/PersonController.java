@@ -59,21 +59,14 @@ public class PersonController {
 	}else return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	
   }
- 
-
+	
+ // TODO Critical put request optimize it
 	@PutMapping("{id}")
 	public ResponseEntity<Person> updatePersonById(@PathVariable("id") int id, @RequestBody Person person){
 		Person existPerson = personRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Person", "id", id));
 		existPerson.setName(person.getName());
-		existPerson.setFatherName(person.getFatherName());
-		existPerson.setAge(person.getAge());
-		existPerson.setGender(person.getGender());
-		existPerson.setPhoneNumber(person.getPhoneNumber());
-		existPerson.setAadhaarNumber(person.getAadhaarNumber());
-		existPerson.setStateId(person.getStateId());
-		existPerson.setAssemblyId(person.getAssemblyId());
-		existPerson.setEpicNumber(person.getEpicNumber());
-		
+		existPerson.setDateOfBirth(person.getDateOfBirth());
+
 		personRepository.save(existPerson);
 		return new ResponseEntity<Person>(existPerson, HttpStatus.OK);
 	}

@@ -47,6 +47,9 @@ public class Person {
 	@Column(name = "assembly_id", nullable = false)
 	private int assemblyId;
 
+	@Column(name = "address", nullable = false)
+	private String address;
+	
 	@Column(name = "voterNumber", nullable = false, unique = true)
 	private String epicNumber;
 
@@ -137,6 +140,14 @@ public class Person {
 
 	public void setEpicNumber(String epicNumber) {
 		this.epicNumber = epicNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public int getId() {
