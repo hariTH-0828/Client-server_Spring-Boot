@@ -58,9 +58,8 @@ public class PersonController {
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}else return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	
-  }
+	}
 	
- // TODO Critical put request optimize it
 	@PutMapping("{id}")
 	public ResponseEntity<Person> updatePersonById(@PathVariable("id") int id, @RequestBody Person person){
 		Person existPerson = personRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Person", "id", id));
