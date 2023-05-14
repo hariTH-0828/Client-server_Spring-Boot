@@ -32,9 +32,6 @@ public class Candidates {
 	@Column(name = "Candidate_qualification", nullable = false)
 	private String qualification;
 
-	@Column(name = "Area", nullable = false)
-	private String area;
-
 	@Column(name = "Average_rating", nullable = false)
 	private float averageRating;
 
@@ -44,8 +41,14 @@ public class Candidates {
 	@Column(name = "Candidate_gender", nullable = false)
 	private String gender;
 
-	@Column(name = "Native_district", nullable = false)
-	private String nativeDistrict;
+	@Column(name = "District", nullable = false)
+	private int districtId;
+	
+	@Column(name = "State", nullable = false)
+	private int stateId;
+	
+	@Column(name = "Aadhaar_number", nullable = false, unique = true)
+	private String aadhaarNumber;
 
 	@Column(name = "Candidate_Biography", nullable = false)
 	private String background;
@@ -109,21 +112,37 @@ public class Candidates {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
-	public String getNativeDistrict() {
-		return nativeDistrict;
+	
+	public int getDistrictId() {
+		return districtId;
 	}
 
-	public void setNativeDistrict(String nativeDistrict) {
-		this.nativeDistrict = nativeDistrict;
+	public void setDistrictId(int districtId) {
+		this.districtId = districtId;
 	}
 
-	public String getArea() {
-		return area;
+	public int getStateId() {
+		return stateId;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setStateId(int stateId) {
+		this.stateId = stateId;
+	}
+
+	public DataFileInfo getCandidateImageId() {
+		return candidateImageId;
+	}
+
+	public void setCandidateImageId(DataFileInfo candidateImageId) {
+		this.candidateImageId = candidateImageId;
+	}
+
+	public String getAadhaarNumber() {
+		return aadhaarNumber;
+	}
+
+	public void setAadhaarNumber(String aadhaarNumber) {
+		this.aadhaarNumber = aadhaarNumber;
 	}
 
 	public float getAverageRating() {

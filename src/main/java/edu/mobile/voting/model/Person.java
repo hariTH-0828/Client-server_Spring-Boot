@@ -13,10 +13,6 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_image_id", referencedColumnName = "id")
-	private DataFileInfo imageId;
-
 	@Column(name = "name", nullable = false)
 	private String name;
 
@@ -26,8 +22,8 @@ public class Person {
 	@Column(name = "date_of_bith", nullable = false)
 	private Date dateOfBirth;
 
-	@Column(name = "age", nullable = false)
-	private int age;
+	@Column(name = "date_of_joining", nullable = false)
+	private Date dateOfJoining;
 
 	@Column(name = "father_name", nullable = false)
 	private String fatherName;
@@ -52,6 +48,10 @@ public class Person {
 	
 	@Column(name = "voterNumber", nullable = false, unique = true)
 	private String epicNumber;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_image_id", referencedColumnName = "id")
+	private DataFileInfo imageId;
 
 	// Getter and Setter
 	public String getName() {
@@ -78,12 +78,12 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public int getAge() {
-		return age;
+	public Date getDateOfJoining() {
+		return dateOfJoining;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setDateOfJoining(Date dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
 	}
 
 	public String getAadhaarNumber() {

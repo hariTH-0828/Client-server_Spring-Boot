@@ -22,7 +22,7 @@ public class DataFileStorageImpl implements DataFileStorage {
 	
 	File file;
 	
-	private static final String path = "C:\\Documents\\Project\\user_data\\";
+	private static final String path = "C:\\Users\\kulen\\Documents\\Project\\date_file";
 	
 	@Override
 	public InputStream readFile(long fileId) throws IOException {

@@ -13,10 +13,10 @@ public class PastPerformance {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "PositionHeld", nullable = false)
+	@Column(name = "PositionHeld")
 	private String positionHeld;
 
-	@Column(name = "NumberOfVote", nullable = false)
+	@Column(name = "NumberOfVote")
 	private int numberOfVote;
 
 	public String getPositionHeld() {
